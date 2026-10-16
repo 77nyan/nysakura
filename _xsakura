@@ -1,0 +1,36 @@
+#compdef xsakura
+# zsh completion for xsakura
+
+_arguments -s \
+  '(-sakura -pink -red -orange -yellow -gold -green -cyan -blue -purple -magenta -white -rainbow)-sakura[soft pink (default)]' \
+  '(-sakura -pink -red -orange -yellow -gold -green -cyan -blue -purple -magenta -white -rainbow)-pink[pink tree]' \
+  '(-sakura -pink -red -orange -yellow -gold -green -cyan -blue -purple -magenta -white -rainbow)-red[red tree]' \
+  '(-sakura -pink -red -orange -yellow -gold -green -cyan -blue -purple -magenta -white -rainbow)-orange[orange tree]' \
+  '(-sakura -pink -red -orange -yellow -gold -green -cyan -blue -purple -magenta -white -rainbow)-yellow[yellow tree]' \
+  '(-sakura -pink -red -orange -yellow -gold -green -cyan -blue -purple -magenta -white -rainbow)-gold[gold tree]' \
+  '(-sakura -pink -red -orange -yellow -gold -green -cyan -blue -purple -magenta -white -rainbow)-green[green tree]' \
+  '(-sakura -pink -red -orange -yellow -gold -green -cyan -blue -purple -magenta -white -rainbow)-cyan[cyan tree]' \
+  '(-sakura -pink -red -orange -yellow -gold -green -cyan -blue -purple -magenta -white -rainbow)-blue[blue tree]' \
+  '(-sakura -pink -red -orange -yellow -gold -green -cyan -blue -purple -magenta -white -rainbow)-purple[purple tree]' \
+  '(-sakura -pink -red -orange -yellow -gold -green -cyan -blue -purple -magenta -white -rainbow)-magenta[magenta tree]' \
+  '(-sakura -pink -red -orange -yellow -gold -green -cyan -blue -purple -magenta -white -rainbow)-white[white tree]' \
+  '(-sakura -pink -red -orange -yellow -gold -green -cyan -blue -purple -magenta -white -rainbow)-rainbow[every cluster a different color]' \
+  '-hex[custom color]:color (RRGGBB): ' \
+  '(-s --seed)'{-s,--seed}'[reproducible tree]:seed: ' \
+  '(-p --print)'{-p,--print}'[print the finished tree and exit]' \
+  '(-i --instant)'{-i,--instant}'[skip the growing animation]' \
+  '(-t --time)'{-t,--time}'[quit after N seconds]:seconds: ' \
+  '--cycle[grow a new tree N seconds after the last one]:seconds: ' \
+  '--speed[animation speed multiplier]:multiplier: ' \
+  '--grow[seconds the tree needs to grow]:seconds: ' \
+  '--petals[number of falling petals]:count: ' \
+  '--wind[wind strength, negative blows left]:strength: ' \
+  '--scale[tree size multiplier]:multiplier: ' \
+  '--width[width in cells]:columns: ' \
+  '--height[height in cells]:rows: ' \
+  '--fps[frames per second]:fps: ' \
+  '--truecolor[force 24-bit color]' \
+  '--256[force 256-color mode]' \
+  '(-l --list)'{-l,--list}'[list the colors]' \
+  '(-h --help)'{-h,--help}'[show help]' \
+  '(-v --version)'{-v,--version}'[show version]'
