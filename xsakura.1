@@ -1,0 +1,103 @@
+.TH XSAKURA 1 "October 2026" "xsakura 1.1.0" "User Commands"
+.SH NAME
+xsakura \- grow a cherry blossom tree in your terminal
+.SH SYNOPSIS
+.B xsakura
+[\fIcolor\fR] [\fIoptions\fR]
+.SH DESCRIPTION
+.B xsakura
+draws a sakura tree with half-block pixel art. The tree grows from a sprout,
+sprouts bare branches, bursts into bloom and then sheds petals that drift in
+the wind. The tree grows from the bottom edge of the terminal and nothing else
+is drawn, so the background stays transparent and it fits nicely on top of a
+wallpaper. It needs a terminal with 24-bit color
+(256 colors work as a fallback) and a font with the half block characters.
+.SH COLORS
+Give a color as a single-dash option, for example
+.BR "xsakura \-red" .
+.TP
+.B \-sakura
+Soft cherry blossom pink (default).
+.TP
+.B \-pink \-red \-orange \-yellow \-gold \-green \-cyan \-blue \-purple \-magenta \-white
+Single colored trees.
+.TP
+.B \-rainbow
+Every blossom cluster gets its own color.
+.TP
+.BI \-hex " RRGGBB"
+Any custom color.
+.SH OPTIONS
+.TP
+.BR \-s ", " \-\-seed " \fIN\fR"
+Reproducible tree. The same seed and window size give the same tree.
+.TP
+.BR \-p ", " \-\-print
+Print the finished tree to standard output and exit. Handy for screenshots
+and for a shell greeting. This is also the default when output is not a terminal.
+.TP
+.BR \-i ", " \-\-instant
+Skip the growing animation.
+.TP
+.B \-mini
+Grow the shorter, wider tree. Without this option xsakura grows a tall, slim
+tree with a long trunk that fills about 90% of the terminal height, which looks
+best in a full-height window. The mini tree has a short trunk and a wide, round
+crown. It suits a short or wide terminal, but it looks short in a tall, narrow one.
+.TP
+.BR \-t ", " \-\-time " \fISEC\fR"
+Quit after SEC seconds.
+.TP
+.BI \-\-cycle " SEC"
+Grow a brand new tree SEC seconds after the previous one finished.
+.TP
+.BI \-\-speed " X"
+Animation speed multiplier (default 1.0).
+.TP
+.BI \-\-grow " SEC"
+Seconds the tree needs to grow (default 9).
+.TP
+.BI \-\-petals " N"
+Number of falling petals. The default scales with the window width.
+.TP
+.BI \-\-wind " X"
+Wind strength. Negative values blow to the left (default 1.0).
+.TP
+.BI \-\-scale " X"
+Tree size multiplier (default 1.0). The tree always shrinks to fit the window.
+.TP
+.BI \-\-width " N" ", " \-\-height " N"
+Size in terminal cells (default: size of the terminal).
+.TP
+.BI \-\-fps " N"
+Frames per second (default 30).
+.TP
+.BR \-\-truecolor ", " \-\-256
+Force the color mode. By default it is detected from COLORTERM and TERM.
+.TP
+.BR \-l ", " \-\-list
+List the available colors.
+.TP
+.BR \-h ", " \-\-help ", " \-v ", " \-\-version
+Show help or the version.
+.SH KEYS
+.TP
+.B q, Esc, Ctrl\-C
+Quit.
+.TP
+.B r
+Grow a new tree.
+.TP
+.B space
+Pause or resume.
+.SH EXAMPLES
+.nf
+xsakura                        # the classic
+xsakura \-green                # a green tree
+xsakura \-hex ff8800 \-i         # an orange tree, already grown
+xsakura \-mini                 # the shorter, wider tree
+xsakura \-p \-s 7                # print a finished tree for a screenshot
+xsakura \-\-cycle 20             # screensaver: new tree every 20 seconds
+.fi
+.SH AUTHOR
+Written for people who like pretty terminals.
