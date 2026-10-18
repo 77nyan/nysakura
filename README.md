@@ -16,12 +16,64 @@ xsakura -green     # a green one
 
 ## Install
 
-> **AUR status:** the AUR package is being submitted. If `yay -S xsakura` says
-> the package was not found, use the install script in the second section below.
+The install script works the same on **every Linux distribution, including Arch
+Linux** and Arch-based ones such as Omarchy, Manjaro and EndeavourOS. You need
+Python 3.6 or newer. Most distributions already have it, and the script offers to
+install it if it is missing.
 
-### Arch Linux and Arch-based distros (AUR)
+```sh
+git clone https://github.com/77nyan/xsakura.git
+cd xsakura
+sh install.sh
+```
 
-With an AUR helper, one command installs it:
+Running `sh install.sh` with no options shows a small menu: **1) Install**,
+**2) Update**, **3) Uninstall**, **4) Quit**. Type a number and press Enter.
+
+No git? Click the green **Code** button on this page, choose **Download ZIP**,
+unzip it, open a terminal in the unzipped folder, and run `sh install.sh`.
+
+When you choose Install, the script asks for your password (sudo) and installs for
+everyone in `/usr/local`. It installs the `xsakura` command, its man page and tab completion
+for bash, zsh and fish.
+
+| Command | What it does |
+| --- | --- |
+| `sh install.sh` | Show the menu (Install, Update, Uninstall) |
+| `sh install.sh --install` | Install system-wide in `/usr/local` |
+| `sh install.sh --user` | Install only for you in `~/.local`, no password needed |
+| `sh install.sh --update` | Get the newest version and reinstall it (see [Update](#update)) |
+| `sh install.sh --prefix DIR` | Install into `DIR` instead |
+| `sh install.sh --uninstall` | Remove it again (add `--user` or `--prefix DIR` if you used one) |
+| `sh install.sh -y` | Do not ask questions, and install Python 3 if it is missing |
+
+If you used `--user` and the shell says `xsakura: command not found`, add
+`~/.local/bin` to your PATH by putting this line in `~/.bashrc` or `~/.zshrc`, then
+open a new terminal:
+
+```sh
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+In zsh, tab completion from a `--user` install needs this line in `~/.zshrc`
+before `compinit`:
+
+```sh
+fpath+=(~/.local/share/zsh/site-functions)
+```
+
+### Just try it without installing
+
+Inside the downloaded folder:
+
+```sh
+python3 xsakura
+```
+
+### Arch Linux: AUR package (coming soon)
+
+An AUR version is coming soon. When it is published, Arch users will also be able
+to install xsakura with one command:
 
 ```sh
 yay -S xsakura
@@ -31,7 +83,10 @@ paru -S xsakura
 
 Note the capital `S`. A lowercase `-s` does something else.
 
-#### I don't have yay or paru. How do I set up the AUR?
+Until then, use the install script above. It works exactly the same on Arch.
+
+<details>
+<summary>I don't have yay or paru. How do I set up the AUR?</summary>
 
 The AUR (Arch User Repository) is a collection of community-made packages. There
 is no switch to turn on in Arch itself. You need two things: `git` and the
@@ -68,13 +123,13 @@ is no switch to turn on in Arch itself. You need two things: `git` and the
    makepkg -si
    ```
 
-4. Now `yay -S xsakura` (or `paru -S xsakura`) works.
+4. Once xsakura is on the AUR, `yay -S xsakura` (or `paru -S xsakura`) works.
 
 **Manjaro:** open Pamac, go to **Preferences**, then **Third Party**, and turn on
 **Enable AUR support**. Then search for `xsakura` in Pamac, or run
 `pamac build xsakura` in a terminal.
 
-**No helper at all:** you can build the package by hand:
+**No helper at all:** once the package is on the AUR, you can build it by hand:
 
 ```sh
 git clone https://aur.archlinux.org/xsakura.git
@@ -82,59 +137,41 @@ cd xsakura
 makepkg -si
 ```
 
-### Any other Linux distribution (install script)
-
-You need Python 3.6 or newer. Most distributions already have it. The script offers
-to install it if it is missing.
-
-```sh
-git clone https://github.com/77nyan/xsakura.git
-cd xsakura
-sh install.sh
-```
-
-No git? Click the green **Code** button on this page, choose **Download ZIP**,
-unzip it, open a terminal in the unzipped folder, and run `sh install.sh`.
-
-The script asks for your password (sudo) and installs for everyone in
-`/usr/local`. It installs the `xsakura` command, its man page and tab completion
-for bash, zsh and fish.
-
-| Command | What it does |
-| --- | --- |
-| `sh install.sh` | Install system-wide in `/usr/local` |
-| `sh install.sh --user` | Install only for you in `~/.local`, no password needed |
-| `sh install.sh --prefix DIR` | Install into `DIR` instead |
-| `sh install.sh --uninstall` | Remove it again (add `--user` or `--prefix DIR` if you used one) |
-| `sh install.sh -y` | Do not ask questions, and install Python 3 if it is missing |
-
-If you used `--user` and the shell says `xsakura: command not found`, add
-`~/.local/bin` to your PATH by putting this line in `~/.bashrc` or `~/.zshrc`, then
-open a new terminal:
-
-```sh
-export PATH="$HOME/.local/bin:$PATH"
-```
-
-In zsh, tab completion from a `--user` install needs this line in `~/.zshrc`
-before `compinit`:
-
-```sh
-fpath+=(~/.local/share/zsh/site-functions)
-```
-
-### Just try it without installing
-
-Inside the downloaded folder:
-
-```sh
-python3 xsakura
-```
+</details>
 
 ### Windows
 
 xsakura is made for Linux terminals. On Windows, install WSL (`wsl --install` in
-PowerShell), open the Linux terminal, and follow the steps above.
+PowerShell), open the Linux terminal, and follow the install steps above.
+
+## Update
+
+To get the newest version, go into the xsakura folder you cloned and run:
+
+```sh
+cd xsakura
+sh install.sh --update
+```
+
+Or run `sh install.sh` and choose **2) Update** in the menu.
+
+This downloads the newest files from GitHub (`git pull`) and reinstalls xsakura in
+the same place it is installed now, so you do not have to remember whether you used
+`--user`. It tells you what changed, for example
+`Updated: xsakura 1.1.0 -> xsakura 1.2.0`. You can check your version any time with
+`xsakura --version`.
+
+- **Downloaded the ZIP instead of cloning?** Download the newest ZIP from this page,
+  unzip it, and run `sh install.sh --update` inside the new folder. It finds your
+  existing install and updates it.
+- **Deleted the folder?** Clone it again with
+  `git clone https://github.com/77nyan/xsakura.git`, then run
+  `sh install.sh --update` inside it.
+- **`git pull` says you have local changes?** You edited a file in the folder. Run
+  `git status` to see which, undo or save your edits, and try again.
+- **Installed from the AUR package (once it is available)?** Update it like any
+  other package with `yay -Syu`. `sh install.sh --update` will not touch a copy that
+  your package manager installed, and tells you this.
 
 ## Usage
 
@@ -216,14 +253,14 @@ command -v xsakura
 
 | It prints | You installed it with | Go to |
 | --- | --- | --- |
-| `/usr/bin/xsakura` | the AUR (`yay`, `paru` or `makepkg`) | [Installed from the AUR](#installed-from-the-aur) |
+| `/usr/bin/xsakura` | the AUR package (once it is available) | [Installed from the AUR](#installed-from-the-aur-once-it-is-available) |
 | `/usr/local/bin/xsakura` | `sh install.sh` | [Installed with the install script](#installed-with-the-install-script) |
 | `~/.local/bin/xsakura` | `sh install.sh --user` | [Installed with the install script](#installed-with-the-install-script) |
 
 xsakura does not create any settings or config files, so removing the program
 leaves nothing else behind.
 
-### Installed from the AUR
+### Installed from the AUR (once it is available)
 
 ```sh
 sudo pacman -Rns xsakura
@@ -236,8 +273,9 @@ use it.
 
 ### Installed with the install script
 
-Open a terminal in the xsakura folder you downloaded or cloned and run the same
-option you installed with:
+Open a terminal in the xsakura folder you downloaded or cloned, run
+`sh install.sh` and choose **3) Uninstall**. It finds where xsakura is installed by
+itself. You can also use the option directly:
 
 ```sh
 sh install.sh --uninstall              # installed with: sh install.sh
