@@ -1,5 +1,5 @@
-# bash completion for xsakura
-_xsakura() {
+# bash completion for nysakura
+_nysakura() {
     local cur prev
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
@@ -11,4 +11,4 @@ _xsakura() {
     local opts="-s --seed -p --print -i --instant -t --time --cycle --speed --grow --petals --wind --scale --width --height --fps --truecolor --256 -l --list -h --help -v --version"
     COMPREPLY=( $(compgen -W "$colors $opts" -- "$cur") )
 }
-complete -F _xsakura xsakura
+complete -F _nysakura nysakura

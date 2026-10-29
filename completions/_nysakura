@@ -1,5 +1,5 @@
-#compdef xsakura
-# zsh completion for xsakura
+#compdef nysakura
+# zsh completion for nysakura
 
 _arguments -s \
   '(-sakura -pink -red -orange -yellow -gold -green -cyan -blue -purple -magenta -white -rainbow)-sakura[soft pink (default)]' \

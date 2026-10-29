@@ -1,11 +1,11 @@
-.TH XSAKURA 1 "October 2026" "xsakura 1.1.0" "User Commands"
+.TH NYSAKURA 1 "October 2026" "nysakura 2.0.0" "User Commands"
 .SH NAME
-xsakura \- grow a cherry blossom tree in your terminal
+nysakura \- grow a cherry blossom tree in your terminal
 .SH SYNOPSIS
-.B xsakura
+.B nysakura
 [\fIcolor\fR] [\fIoptions\fR]
 .SH DESCRIPTION
-.B xsakura
+.B nysakura
 draws a sakura tree with half-block pixel art. The tree grows from a sprout,
 sprouts bare branches, bursts into bloom and then sheds petals that drift in
 the wind. The tree grows from the bottom edge of the terminal and nothing else
@@ -14,7 +14,7 @@ wallpaper. It needs a terminal with 24-bit color
 (256 colors work as a fallback) and a font with the half block characters.
 .SH COLORS
 Give a color as a single-dash option, for example
-.BR "xsakura \-red" .
+.BR "nysakura \-red" .
 .TP
 .B \-sakura
 Soft cherry blossom pink (default).
@@ -40,7 +40,7 @@ and for a shell greeting. This is also the default when output is not a terminal
 Skip the growing animation.
 .TP
 .B \-mini
-Grow the shorter, wider tree. Without this option xsakura grows a tall, slim
+Grow the shorter, wider tree. Without this option nysakura grows a tall, slim
 tree with a long trunk that fills about 90% of the terminal height, which looks
 best in a full-height window. The mini tree has a short trunk and a wide, round
 crown. It suits a short or wide terminal, but it looks short in a tall, narrow one.
@@ -92,12 +92,12 @@ Grow a new tree.
 Pause or resume.
 .SH EXAMPLES
 .nf
-xsakura                        # the classic
-xsakura \-green                # a green tree
-xsakura \-hex ff8800 \-i         # an orange tree, already grown
-xsakura \-mini                 # the shorter, wider tree
-xsakura \-p \-s 7                # print a finished tree for a screenshot
-xsakura \-\-cycle 20             # screensaver: new tree every 20 seconds
+nysakura                        # the classic
+nysakura \-green                # a green tree
+nysakura \-hex ff8800 \-i         # an orange tree, already grown
+nysakura \-mini                 # the shorter, wider tree
+nysakura \-p \-s 7                # print a finished tree for a screenshot
+nysakura \-\-cycle 20             # screensaver: new tree every 20 seconds
 .fi
 .SH AUTHOR
-Written for people who like pretty terminals.
+Written in Rust by Jakub Ziaja (77nyan). https://github.com/77nyan/nysakura

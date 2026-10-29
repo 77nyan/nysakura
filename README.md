@@ -1,213 +1,211 @@
-# xsakura
+<div align="center">
 
-An animated pixel-art cherry blossom tree for your terminal. It sprouts from the
-bottom edge, branches out, bursts into bloom, then sheds petals that drift in
-the wind. 13 colors, a transparent background and no dependencies except
-Python. Nothing else is drawn, just the tree. Made for ricing and screenshots.
+# 🌸 nysakura 桜
+
+**A tall cherry blossom tree that grows, blooms and sheds petals, right in your terminal.**
+
+Written in Rust · zero dependencies · made for ricing and screenshots
+
+<img src="https://img.shields.io/badge/Rust-1.63%2B-f74c00?style=for-the-badge&logo=rust&logoColor=white" alt="Rust 1.63+">
+<img src="https://img.shields.io/badge/Linux-any%20distro-fcc624?style=for-the-badge&logo=linux&logoColor=black" alt="Linux">
+<img src="https://img.shields.io/badge/dependencies-0-ff8fb1?style=for-the-badge" alt="0 dependencies">
+<img src="https://img.shields.io/badge/license-MIT-4c9be8?style=for-the-badge" alt="MIT license">
+<img src="https://img.shields.io/badge/AUR-coming%20soon-1793d1?style=for-the-badge&logo=archlinux&logoColor=white" alt="AUR coming soon">
+
+<br><br>
+
+<img src="assets/nysakura.png" width="360" alt="A pink cherry blossom tree drawn in pixel art, petals falling">
+
+<br>
+
+`nysakura` · `nysakura -mini` · `nysakura -blue` · `nysakura -hex ff8800`
+
+</div>
+
+<br>
+
+## Contents
+
+- 📦 [1.0 Install](#10-install)
+  - [1.1 Dependencies](#11-dependencies)
+  - [1.2 The installer](#12-the-installer)
+  - [1.3 Update](#13-update)
+  - [1.4 Uninstall](#14-uninstall)
+  - [1.5 Arch Linux and the AUR](#15-arch-linux-and-the-aur)
+  - [1.6 Coming from xsakura](#16-coming-from-xsakura)
+- 🎨 [2.0 Usage](#20-usage)
+  - [2.1 Colors](#21-colors)
+  - [2.2 Tree size](#22-tree-size)
+  - [2.3 Options and keys](#23-options-and-keys)
+- ✨ [3.0 Ricing ideas](#30-ricing-ideas)
+- ⚡ [4.0 Performance](#40-performance)
+- 🛠️ [5.0 Build from source](#50-build-from-source)
+- 💖 [6.0 Credits and license](#60-credits-and-license)
+
+<br>
+
+## 1.0 Install
+
+The same three commands work on **every Linux distribution, Arch Linux included**:
 
 ```sh
-xsakura            # a tall pink tree, made for full-height terminals
-xsakura -mini      # a shorter, wider tree
-xsakura -red       # a red one
-xsakura -green     # a green one
+git clone https://github.com/77nyan/nysakura.git
+cd nysakura
+sudo ./install.sh
 ```
 
-<!-- Add screenshots: save them in this folder (for example screenshot.png) and add a line like: ![xsakura](screenshot.png) -->
+> [!TIP]
+> No git? Click **Code → Download ZIP** on this page, unzip it, open a terminal in the folder and run `chmod +x install.sh`, then `sudo ./install.sh`.
 
-## Install
+The installer shows a small menu: **1 Install · 2 Update · 3 Uninstall · 4 Quit**. Use the arrow keys or press a number. It checks your tools, builds nysakura and copies it to `/usr/local`. See [1.2](#12-the-installer).
 
-The install script works the same on **every Linux distribution, including Arch
-Linux** and Arch-based ones such as Omarchy, Manjaro and EndeavourOS. You need
-Python 3.6 or newer. Most distributions already have it, and the script offers to
-install it if it is missing.
+### 1.1 Dependencies
 
-```sh
-git clone https://github.com/77nyan/xsakura.git
-cd xsakura
-sh install.sh
-```
+**To run nysakura you need almost nothing:**
 
-Running `sh install.sh` with no options shows a small menu: **1) Install**,
-**2) Update**, **3) Uninstall**, **4) Quit**. Type a number and press Enter.
+| | Needed | Notes |
+| --- | --- | --- |
+| 🐧 | Linux (any architecture) | uses only the C library that is already on your system |
+| 🖥️ | A UTF-8 terminal with half-block characters `▀ ▄ █` | kitty, alacritty, foot, wezterm, konsole, gnome-terminal and so on |
+| 🎨 | 24-bit color *(recommended)* | 256-color terminals work with slightly less smooth colors |
 
-No git? Click the green **Code** button on this page, choose **Download ZIP**,
-unzip it, open a terminal in the unzipped folder, and run `sh install.sh`.
+**To build it (the installer does this for you) you need:**
 
-When you choose Install, the script asks for your password (sudo) and installs for
-everyone in `/usr/local`. It installs the `xsakura` command, its man page and tab completion
-for bash, zsh and fish.
+| | Needed | Notes |
+| --- | --- | --- |
+| 🦀 | **Rust 1.63 or newer** (`rustc` and `cargo`) | no other crates, nothing is downloaded while building |
+| 🔧 | **A C linker** (`cc`, `gcc` or `clang`) | Rust uses it to link the program |
+| 🌿 | **git** *(optional)* | only used by **Update** to download the newest version |
 
-| Command | What it does |
+The installer finds what is missing and **offers to install it with your package manager**. If you prefer to do it yourself:
+
+| Distribution | Command |
 | --- | --- |
-| `sh install.sh` | Show the menu (Install, Update, Uninstall) |
-| `sh install.sh --install` | Install system-wide in `/usr/local` |
-| `sh install.sh --user` | Install only for you in `~/.local`, no password needed |
-| `sh install.sh --update` | Get the newest version and reinstall it (see [Update](#update)) |
-| `sh install.sh --prefix DIR` | Install into `DIR` instead |
-| `sh install.sh --uninstall` | Remove it again (add `--user` or `--prefix DIR` if you used one) |
-| `sh install.sh -y` | Do not ask questions, and install Python 3 if it is missing |
+| Arch, CachyOS, Omarchy, Manjaro, EndeavourOS | `sudo pacman -S --needed rust gcc git` |
+| Debian, Ubuntu, Linux Mint | `sudo apt install cargo rustc gcc git` |
+| Fedora | `sudo dnf install cargo rust gcc git` |
+| openSUSE | `sudo zypper install cargo rust gcc git` |
+| Alpine | `sudo apk add cargo rust gcc musl-dev git` |
+| Void | `sudo xbps-install -S cargo rust gcc git` |
+| Gentoo | `sudo emerge dev-lang/rust-bin sys-devel/gcc dev-vcs/git` |
+| Anything else | install Rust with [rustup.rs](https://rustup.rs), plus a C compiler |
 
-If you used `--user` and the shell says `xsakura: command not found`, add
-`~/.local/bin` to your PATH by putting this line in `~/.bashrc` or `~/.zshrc`, then
-open a new terminal:
+> [!NOTE]
+> Using **rustup**? Make sure a toolchain is set up first: `rustup default stable`.
 
-```sh
-export PATH="$HOME/.local/bin:$PATH"
-```
+### 1.2 The installer
 
-In zsh, tab completion from a `--user` install needs this line in `~/.zshrc`
-before `compinit`:
+`sudo ./install.sh` opens a menu in the style of the AerynOS Lichen installer:
 
-```sh
-fpath+=(~/.local/share/zsh/site-functions)
-```
+| # | Action | What it does |
+| --- | --- | --- |
+| 1 | **Install** | checks the dependencies, builds nysakura, installs it to `/usr/local` |
+| 2 | **Update** | downloads the newest version and reinstalls it |
+| 3 | **Uninstall** | shows every file it will remove and asks first (the default answer is *No*) |
+| 4 | **Quit** | leaves without changing anything |
 
-### Just try it without installing
+It installs the `nysakura` command, the man page (`man nysakura`) and tab completion for bash, zsh and fish. The program is built as **your user**, so nothing in your folder becomes root-owned, and only the final copy uses root.
 
-Inside the downloaded folder:
+> [!IMPORTANT]
+> Run it exactly as `sudo ./install.sh`. If it says *permission denied*, the file lost its executable bit (this happens with ZIP downloads): run `chmod +x install.sh` once.
 
-```sh
-python3 xsakura
-```
-
-### Arch Linux: AUR package (coming soon)
-
-An AUR version is coming soon. When it is published, Arch users will also be able
-to install xsakura with one command:
+### 1.3 Update
 
 ```sh
-yay -S xsakura
-# or
-paru -S xsakura
+cd nysakura
+sudo ./install.sh        # then choose  2  Update
 ```
 
-Note the capital `S`. A lowercase `-s` does something else.
-
-Until then, use the install script above. It works exactly the same on Arch.
+It runs `git pull`, rebuilds, reinstalls, and tells you what changed: `Updated: nysakura 2.0.0 -> nysakura 2.1.0`. Check your version any time with `nysakura --version`.
 
 <details>
-<summary>I don't have yay or paru. How do I set up the AUR?</summary>
+<summary>📂 Downloaded the ZIP, or deleted the folder?</summary>
 
-The AUR (Arch User Repository) is a collection of community-made packages. There
-is no switch to turn on in Arch itself. You need two things: `git` and the
-`base-devel` group (the build tools), plus an "AUR helper" such as `yay` or
-`paru` that downloads and builds AUR packages for you.
+<br>
 
-1. Check whether you already have one. EndeavourOS and CachyOS usually ship with a
-   helper:
+- **ZIP:** download the newest ZIP, unzip it, and run `sudo ./install.sh` → **Update** inside the new folder.
+- **Deleted the folder:** `git clone https://github.com/77nyan/nysakura.git` again, then run the installer inside it.
+- **`git pull` complains about local changes:** you edited a file in the folder. Run `git status`, undo or save your edits, and try again.
 
-   ```sh
-   yay --version
-   paru --version
-   ```
+</details>
 
-2. If both say `command not found`, install the build tools:
-
-   ```sh
-   sudo pacman -S --needed base-devel git
-   ```
-
-3. Install a helper. Pick one. `-bin` means a prebuilt version, which installs fast:
-
-   ```sh
-   # yay
-   git clone https://aur.archlinux.org/yay-bin.git
-   cd yay-bin
-   makepkg -si
-   ```
-
-   ```sh
-   # paru
-   git clone https://aur.archlinux.org/paru-bin.git
-   cd paru-bin
-   makepkg -si
-   ```
-
-4. Once xsakura is on the AUR, `yay -S xsakura` (or `paru -S xsakura`) works.
-
-**Manjaro:** open Pamac, go to **Preferences**, then **Third Party**, and turn on
-**Enable AUR support**. Then search for `xsakura` in Pamac, or run
-`pamac build xsakura` in a terminal.
-
-**No helper at all:** once the package is on the AUR, you can build it by hand:
+### 1.4 Uninstall
 
 ```sh
-git clone https://aur.archlinux.org/xsakura.git
-cd xsakura
-makepkg -si
+cd nysakura
+sudo ./install.sh        # then choose  3  Uninstall
+```
+
+It lists every file it is about to delete and asks first. Your source folder is left alone, so delete it yourself if you don't need it. nysakura never creates config files, so nothing else is left behind.
+
+<details>
+<summary>🧹 Remove it by hand (no installer)</summary>
+
+<br>
+
+```sh
+sudo rm -f /usr/local/bin/nysakura \
+  /usr/local/share/man/man1/nysakura.1 \
+  /usr/local/share/bash-completion/completions/nysakura \
+  /usr/local/share/zsh/site-functions/_nysakura \
+  /usr/local/share/fish/vendor_completions.d/nysakura.fish
+sudo rm -rf /usr/local/share/doc/nysakura /usr/local/share/licenses/nysakura
 ```
 
 </details>
 
-### Windows
+### 1.5 Arch Linux and the AUR
 
-xsakura is made for Linux terminals. On Windows, install WSL (`wsl --install` in
-PowerShell), open the Linux terminal, and follow the install steps above.
+Installing on Arch, CachyOS, Omarchy, Manjaro and EndeavourOS is **exactly the same as on every other distribution**: use the [install script](#10-install).
 
-## Update
-
-To get the newest version, go into the xsakura folder you cloned and run:
+An **AUR package is coming soon**. When it is out you will also be able to run:
 
 ```sh
-cd xsakura
-sh install.sh --update
+yay -S nysakura        # or: paru -S nysakura
 ```
 
-Or run `sh install.sh` and choose **2) Update** in the menu.
+(a capital `S`). Until then, the installer is the way.
 
-This downloads the newest files from GitHub (`git pull`) and reinstalls xsakura in
-the same place it is installed now, so you do not have to remember whether you used
-`--user`. It tells you what changed, for example
-`Updated: xsakura 1.1.0 -> xsakura 1.2.0`. You can check your version any time with
-`xsakura --version`.
+### 1.6 Coming from xsakura
 
-- **Downloaded the ZIP instead of cloning?** Download the newest ZIP from this page,
-  unzip it, and run `sh install.sh --update` inside the new folder. It finds your
-  existing install and updates it.
-- **Deleted the folder?** Clone it again with
-  `git clone https://github.com/77nyan/xsakura.git`, then run
-  `sh install.sh --update` inside it.
-- **`git pull` says you have local changes?** You edited a file in the folder. Run
-  `git status` to see which, undo or save your edits, and try again.
-- **Installed from the AUR package (once it is available)?** Update it like any
-  other package with `yay -Syu`. `sh install.sh --update` will not touch a copy that
-  your package manager installed, and tells you this.
+nysakura is the Rust rewrite of **xsakura**, the earlier Python tool, with the same options and a new name. Run the installer: it finds the old `xsakura` files and offers to remove them. If xsakura came from the AUR, remove it with `sudo pacman -Rns xsakura`.
 
-## Usage
+<br>
 
-### Colors
+## 2.0 Usage
+
+```sh
+nysakura               # a tall pink tree, made for full-height terminals
+nysakura -mini         # a shorter, wider tree
+nysakura -red          # any color
+nysakura -s 12 -i      # an already grown tree, the same one every time
+```
+
+### 2.1 Colors
 
 Give a color as a single-dash option:
 
-`-sakura` (default), `-pink`, `-red`, `-orange`, `-yellow`, `-gold`, `-green`,
-`-cyan`, `-blue`, `-purple`, `-magenta`, `-white`, `-rainbow`, or any color with
-`-hex ff8800`. Run `xsakura --list` to see them.
+`-sakura` *(default)* · `-pink` · `-red` · `-orange` · `-yellow` · `-gold` · `-green` · `-cyan` · `-blue` · `-purple` · `-magenta` · `-white` · `-rainbow` · or any color with `-hex ff8800`
 
-### Tree size: tall by default, `-mini` for a shorter one
+Run `nysakura --list` to see them in your terminal.
 
-By default xsakura grows a tall tree with a long trunk and a slim crown. It fills
-about 90% of the terminal height and stays inside the window, so it looks best in
-a full-height terminal.
+### 2.2 Tree size
 
-`-mini` grows the shorter, wider tree with a short trunk and a round crown. It
-suits a short or wide terminal, but it looks short in a tall, narrow one.
-
-```sh
-xsakura                    # tall pink tree (the default)
-xsakura -mini              # the shorter, wider tree
-xsakura -mini -blue        # works with every color
-xsakura -s 12 -i           # a finished tree, the same one every time
-```
-
-### Options
-
-| option | what it does |
+| Option | Tree |
 | --- | --- |
-| `-mini` | shorter, wider tree (the default tree is tall and slim) |
-| `-s, --seed N` | reproducible tree (same seed and window size = same tree) |
-| `-p, --print` | print the finished tree and exit, great for screenshots |
-| `-i, --instant` | skip the growing animation |
-| `-t, --time SEC` | quit after SEC seconds |
+| *(default)* | 🌲 **tall and slim**: a long trunk and a narrow crown that fills about 90% of the terminal height. Best in a full-height window. |
+| `-mini` | 🌳 **short and wide**: a short trunk and a round crown. Best in a short or wide terminal. |
+
+The tree always shrinks to fit the window. `--scale X` makes it bigger or smaller.
+
+### 2.3 Options and keys
+
+| Option | What it does |
+| --- | --- |
+| `-s`, `--seed N` | reproducible tree (same seed and window size = same tree) |
+| `-p`, `--print` | print the finished tree and exit, great for screenshots |
+| `-i`, `--instant` | skip the growing animation |
+| `-t`, `--time SEC` | quit after SEC seconds |
 | `--cycle SEC` | grow a new tree SEC seconds after the last one finished |
 | `--speed X` | animation speed (default 1.0) |
 | `--grow SEC` | how long the tree needs to grow (default 9) |
@@ -215,103 +213,69 @@ xsakura -s 12 -i           # a finished tree, the same one every time
 | `--wind X` | wind strength, negative blows left |
 | `--scale X` | tree size multiplier |
 | `--width N`, `--height N` | size in cells instead of the terminal size |
+| `--fps N` | frames per second (default 30) |
 | `--truecolor`, `--256` | force the color mode |
+| `-l`, `--list` · `-h`, `--help` · `-v`, `--version` | list colors · help · version |
 
-Keys while it runs: `q` / `Esc` quit, `r` grow a new tree, `space` pause.
+**Keys while it runs:** <kbd>q</kbd> or <kbd>Esc</kbd> quit · <kbd>r</kbd> grow a new tree · <kbd>Space</kbd> pause
 
-## Ricing ideas
+<br>
+
+## 3.0 Ricing ideas
 
 ```sh
 # screensaver: a new tree every 30 seconds after the last one is done
-xsakura --cycle 30
+nysakura --cycle 30
 
 # an already grown tree for your wallpaper terminal
-xsakura -i -s 12
+nysakura -i -s 12
 
-# greet yourself in ~/.zshrc or ~/.bashrc
-xsakura -p --height 14
+# greet yourself in ~/.bashrc or ~/.zshrc  (fish: config.fish)
+nysakura -p --height 14
 
-# hyprland / sway: put it in a terminal on a scratch workspace
-exec = kitty --class xsakura -e xsakura --cycle 60
+# hyprland / sway / niri: a terminal on a scratch workspace
+kitty --class nysakura -e nysakura --cycle 60
 ```
 
-## Requirements
+<br>
 
-- Python 3.6 or newer (tested with 3.13)
-- A terminal with 24-bit color and a font that has the half block characters
-  (`▀ ▄ █`), which is practically every modern terminal: kitty, alacritty, foot,
-  wezterm, konsole, gnome-terminal and so on. 256-color terminals work with slightly
-  less smooth colors.
+## 4.0 Performance
 
-## Uninstall
+nysakura is a full rewrite in Rust. Same trees, same options, a lot less work for your machine:
 
-First find out how it was installed:
-
-```sh
-command -v xsakura
-```
-
-| It prints | You installed it with | Go to |
+| Measured (8 seconds, live) | xsakura (Python) | nysakura (Rust) |
 | --- | --- | --- |
-| `/usr/bin/xsakura` | the AUR package (once it is available) | [Installed from the AUR](#installed-from-the-aur-once-it-is-available) |
-| `/usr/local/bin/xsakura` | `sh install.sh` | [Installed with the install script](#installed-with-the-install-script) |
-| `~/.local/bin/xsakura` | `sh install.sh --user` | [Installed with the install script](#installed-with-the-install-script) |
+| Peak memory, 120×40 terminal | 23.7 MB | **3.1 MB** |
+| Peak memory, 250×70 terminal | 65.9 MB | **8.1 MB** |
+| CPU time, 120×40 terminal | 0.33 s | **0.03 s** |
+| CPU time, 250×70 terminal | 2.50 s | **0.11 s** |
+| `--print`, 200×60 | 0.58 s | **0.05 s** |
+| Needs | Python 3 | nothing |
 
-xsakura does not create any settings or config files, so removing the program
-leaves nothing else behind.
+<sub>Measured on one x86_64 Linux test machine. Yours will differ, but the ratio should hold.</sub>
 
-### Installed from the AUR (once it is available)
+**Made for older devices:** one 400 KB binary with no dependencies, only the cells that changed are redrawn, 256-color fallback, and `--fps 15` lowers the load even more. Built and tested with Rust 1.97. The code only uses features from Rust 1.63, checked with clippy's MSRV lint, and CI builds it with 1.63 too.
 
-```sh
-sudo pacman -Rns xsakura
-```
+<br>
 
-`yay -Rns xsakura` and `paru -Rns xsakura` do the same thing. `-R` removes the
-package, `-n` also removes its leftover config backups, and `-s` removes
-dependencies that nothing else needs. It will not remove Python if other programs
-use it.
-
-### Installed with the install script
-
-Open a terminal in the xsakura folder you downloaded or cloned, run
-`sh install.sh` and choose **3) Uninstall**. It finds where xsakura is installed by
-itself. You can also use the option directly:
+## 5.0 Build from source
 
 ```sh
-sh install.sh --uninstall              # installed with: sh install.sh
-sh install.sh --uninstall --user       # installed with: sh install.sh --user
-sh install.sh --uninstall --prefix DIR # installed with: sh install.sh --prefix DIR
+git clone https://github.com/77nyan/nysakura.git
+cd nysakura
+cargo build --release        # the program is target/release/nysakura
+cargo test                   # run the tests
+./target/release/nysakura
 ```
 
-It removes the command, the man page and the tab completion, and lists each file
-it deleted. If you already deleted the folder, clone it again
-(`git clone https://github.com/77nyan/xsakura.git`) or remove the files by hand:
+<br>
 
-```sh
-# installed with: sh install.sh
-sudo rm -f /usr/local/bin/xsakura \
-  /usr/local/share/man/man1/xsakura.1 \
-  /usr/local/share/bash-completion/completions/xsakura \
-  /usr/local/share/zsh/site-functions/_xsakura \
-  /usr/local/share/fish/vendor_completions.d/xsakura.fish
+## 6.0 Credits and license
 
-# installed with: sh install.sh --user
-rm -f ~/.local/bin/xsakura \
-  ~/.local/share/man/man1/xsakura.1 \
-  ~/.local/share/bash-completion/completions/xsakura \
-  ~/.local/share/zsh/site-functions/_xsakura \
-  ~/.config/fish/completions/xsakura.fish
-```
+Made by **Jakub Ziaja** ([@77nyan](https://github.com/77nyan)). Released under the [MIT license](LICENSE).
 
-### Just ran it from the folder
+<div align="center">
 
-If you only ran `python3 xsakura` without installing, there is nothing to remove.
-Delete the folder if you do not want the files anymore.
+🌸 *If you like it, a star on GitHub makes my day.*
 
-## Credits
-
-Made by Jakub Ziaja ([@77nyan](https://github.com/77nyan)).
-
-## License
-
-[MIT](LICENSE)
+</div>
