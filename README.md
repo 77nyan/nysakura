@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🌸 nysakura 桜
+# 🌸 nysakura
 
 **A tall cherry blossom tree that grows, blooms and sheds petals, right in your terminal.**
 
